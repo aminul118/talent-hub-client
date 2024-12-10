@@ -1,22 +1,17 @@
 import { Link } from "react-router-dom";
-
+import error from "../../assets/lottie/404-searching-magnify.json";
+import Lottie from "lottie-react";
 const ErrorPage = () => {
   return (
-    <div className="boxShadow px-10 w-full lg:flex-row gap-[30px] lg:gap-0 flex-col flex items-center justify-evenly py-20 rounded-xl">
-      <div className="w-[80%] lg:w-[40%]">
-        <img
-          src="https://i.ibb.co/HdHH4Pb/Frame-6.png"
-          alt="illustration"
-          className="w-full"
-        />
+    <div className="h-screen flex items-center justify-center gap-6">
+      <div>
+        <Lottie className="w-96" animationData={error} />
       </div>
 
-      <div className="w-full lg:w-[30%] text-center lg:text-start">
-        <h1 className="text-[2.5rem] sm:text-[4rem] font-[800] text-[#566FA7] leading-[80px]">
-          OOPS!
-        </h1>
+      <div className="space-y-3 text-center">
+        <h1 className="text-7xl font-extrabold">OOPS!</h1>
 
-        <h3 className="text-[#8093B8] text-[0.9rem] sm:text-[1.2rem]">
+        <h3 className="text-slate-400 text-xl ">
           Looks like big foot has broken the link
         </h3>
 
