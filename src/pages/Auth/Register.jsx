@@ -2,8 +2,11 @@ import Lottie from "lottie-react";
 import registerLottie from "../../assets/lottie/register.json";
 import SocialLogin from "../Shared/SocialLogin";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../../providers/AuthProvider/AuthContext";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -12,6 +15,14 @@ const Register = () => {
     const password = form.get("password");
     const registerInfo = { name, email, password };
     console.log(registerInfo);
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log("ERROR");
+      });
   };
   return (
     <section className="min-h-[calc(100vh-288px)] flex ">
