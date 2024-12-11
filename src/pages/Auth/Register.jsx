@@ -2,11 +2,10 @@ import Lottie from "lottie-react";
 import registerLottie from "../../assets/lottie/register.json";
 import SocialLogin from "../Shared/SocialLogin";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import AuthContext from "../../providers/AuthProvider/AuthContext";
+import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser } = useAuth();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);

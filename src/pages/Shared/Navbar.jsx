@@ -1,10 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logos/talenthub-logo.png";
-import { useContext } from "react";
-import AuthContext from "../../providers/AuthProvider/AuthContext";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-  const { user, handleLogOut, loading } = useContext(AuthContext);
+  const { user, handleLogOut, loading } = useAuth();
 
   const navLinks = (
     <>
@@ -19,6 +18,8 @@ const Navbar = () => {
       </li>
     </>
   );
+
+  // Logged in user's profile
 
   const loggedInUser = (
     <>
