@@ -17,6 +17,7 @@ const Login = () => {
     console.log(registerInfo);
     loginUser(email, password).then((result) => {
       console.log(result);
+       e.target.reset();
     });
   };
   return (

@@ -4,7 +4,8 @@ import { useContext } from "react";
 import AuthContext from "../../providers/AuthProvider/AuthContext";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, handleLogOut, loading } = useContext(AuthContext);
+
   const navLinks = (
     <>
       <li>
@@ -19,7 +20,6 @@ const Navbar = () => {
     </>
   );
 
-  // Logged in user profile
   const loggedInUser = (
     <>
       <li>
@@ -31,12 +31,13 @@ const Navbar = () => {
         <NavLink to="/setting">Setting</NavLink>
       </li>
       <li>
-        <button>Logout</button>
+        <button onClick={handleLogOut}>Logout</button>
       </li>
     </>
   );
+
   return (
-    <section className=" bg-base-100">
+    <section className="bg-base-100">
       <div className="container mx-auto navbar">
         <div className="navbar-start">
           <div className="dropdown">
@@ -63,16 +64,25 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <Link to="/" className="flex items-center gap-3 ">
-            <img className="w-14" src={logo} alt="" />
-            <p className="text-2xl font-semibold ">Talent Hub</p>
+          <Link to="/" className="flex items-center gap-3">
+            <img className="w-14" src={logo} alt="Logo" />
+            <p className="text-2xl font-semibold">Talent Hub</p>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
+
         <div className="navbar-end">
-          {user ? (
+          {/* if loading is true then show spinner. else  show user. But if user here show user else show login button 
+          Here i am using two nested if else ex. 
+          loading ? <p>Loading</p> : user ? <p>show user</p> : <button>login</button>
+          */}
+          {loading ? (
+            <div className="flex items-center space-x-2">
+              <span className="loading loading-ring loading-lg"></span>
+            </div>
+          ) : user ? (
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
@@ -81,7 +91,7 @@ const Navbar = () => {
               >
                 <div className="w-10 rounded-full">
                   <img
-                    alt="Tailwind CSS Navbar component"
+                    alt="User Avatar"
                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                   />
                 </div>
@@ -94,9 +104,9 @@ const Navbar = () => {
               </ul>
             </div>
           ) : (
-            <>
-              <button className="btn btn-warning">Login</button>
-            </>
+            <NavLink to="/login" className="btn btn-warning">
+              Login
+            </NavLink>
           )}
         </div>
       </div>

@@ -4,19 +4,33 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
-import auth from "../../firebase/firebese.config";
+import auth from "../../firebase/firebase.config";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // Create a user
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
+  // Login user
   const loginUser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
+  };
+  // Log out user
+  const handleLogOut = () => {
+    signOut(auth)
+      .then(() => {
+        alert("Sign Out Successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -34,6 +48,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     createUser,
     loginUser,
+    handleLogOut,
     loading,
     user,
   };
