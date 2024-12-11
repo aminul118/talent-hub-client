@@ -30,6 +30,7 @@ const Register = () => {
         <form
           onSubmit={handleRegister}
           className="card-body flex-1 shadow-xl rounded-lg p-14"
+          data-aos="fade-left"
         >
           <h1 className="text-5xl font-bold mb-8 ">Register</h1>
           <div className="form-control">

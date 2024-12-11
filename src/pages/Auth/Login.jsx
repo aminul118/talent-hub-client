@@ -25,6 +25,7 @@ const Login = () => {
         <form
           onSubmit={handleLogin}
           className="card-body flex-1 shadow-xl rounded-lg p-14"
+          data-aos="fade-right"
         >
           <h1 className="text-5xl font-bold mb-8 ">Login</h1>
 
