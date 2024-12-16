@@ -29,7 +29,10 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/setting">Setting</NavLink>
+        <NavLink to="/job-post">Job Post</NavLink>
+      </li>
+      <li>
+        <NavLink to="/my-applications">My Applications</NavLink>
       </li>
       <li>
         <button onClick={handleLogOut}>Logout</button>

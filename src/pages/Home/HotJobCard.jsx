@@ -2,7 +2,7 @@ import { FaDollarSign, FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const HotJobCard = ({ job }) => {
-  console.log(job);
+  //   console.log(job);
   const {
     company,
     company_logo,
@@ -29,10 +29,10 @@ const HotJobCard = ({ job }) => {
       <div className="card-body">
         <h2 className="card-title">{tittle}</h2>
         <p>{description}</p>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 text-center">
           {requirements.map((skill, i) => (
             <p
-              className="border border-red-400 px-2 py-1 rounded-md hover:bg-blue-400 hover:text-black"
+              className="border border-red-400 px-2 py-1 rounded-md hover:bg-blue-400 hover:text-black hover:cursor-pointer hover:border-blue-600"
               key={i}
             >
               {skill}

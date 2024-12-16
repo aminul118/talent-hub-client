@@ -1,24 +1,40 @@
 import Lottie from "lottie-react";
 import registerLottie from "../../assets/lottie/register.json";
 import SocialLogin from "../Shared/SocialLogin";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
 
 const Login = () => {
   const { loginUser } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state || "/";
+  console.log(location);
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
-
     const email = form.get("email");
     const password = form.get("password");
     const registerInfo = { email, password };
     console.log(registerInfo);
-    loginUser(email, password).then((result) => {
-      console.log(result);
-      e.target.reset();
-    });
+    loginUser(email, password)
+      .then((result) => {
+        console.log(result.user.email);
+        const user = { email: email };
+        axios
+          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .then((res) => console.log(res.data));
+
+        // e.target.reset();
+        // navigate(from);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
   return (
     <section className="min-h-[calc(100vh-288px)] flex ">
       <div className="md:flex gap-6 items-center  ">
